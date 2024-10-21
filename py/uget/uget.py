@@ -25,13 +25,16 @@ def uget(data, keys: list):
             else:
                 return None
         elif isinstance(it, list) or isinstance(it, tuple):
-            if isinstance(key, int):
+            if isinstance(key, int): # supports integer index accessing list/tuple for
                 it = it[key]
             else:
-                return None  # supports integer index accessing list/tuple for
+                return None
             pass
         else:
-            return None  # unsupported type here
+            try:
+                it = it[key]
+            except:
+                return None
         pass
 
     return it

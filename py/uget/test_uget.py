@@ -1,3 +1,5 @@
+from sympy.stats.sampling.sample_numpy import numpy
+
 from uget import uget
 
 
@@ -133,5 +135,13 @@ def test_data_access_list_tuple_dict():
     data = [(None, None), (None, None), (None, struct)]
 
     actual = uget(data, [2, 1, "second", 0, 1])
+    expected = 42
+    assert actual == expected
+
+def test_numpy_array():
+    array = numpy.array([42])
+    data = None, 41, array
+
+    actual = uget(data, [2, 0])
     expected = 42
     assert actual == expected
