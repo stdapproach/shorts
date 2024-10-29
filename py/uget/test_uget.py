@@ -145,3 +145,25 @@ def test_numpy_array():
     actual = uget(data, [2, 0])
     expected = 42
     assert actual == expected
+
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+def test_complex_with_class():
+    struct = {
+        "first": None,
+        "second": [(41, Person({"John": 42}, None)), (43, 44)],
+        "third": None,
+    }
+    data = [(None, None), (None, None), (None, struct)]
+
+    actual = uget(data, [2, 1, "second", 0, 1, "name", "John"])
+    expected = 42
+    assert actual == expected
+
+def test_getting_member_from_class():
+    person = Person("John", 42)
+    assert uget(person, ['age']) == 42
+    assert uget(person, ['name']) == "John"

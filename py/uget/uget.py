@@ -19,6 +19,11 @@ def uget(data, keys: list):
             return None  # no way for further accessing
         if it is None:
             return None  # no way for further accessing
+
+        if isinstance(key, str):
+            if hasattr(it, key):
+                it = getattr(it, key)
+                continue
         if isinstance(it, dict):
             if key in it:
                 it = it[key]
